@@ -1,7 +1,7 @@
-import React from 'react';
+import React     from 'react';
 import PropTypes from 'prop-types'
 
-const Sidebar = ({ users }) => {
+const SideBar = ({ users }) => {
 	return (
 		<aside className="user-list">
 		  <u>Online Users</u><br/>
@@ -16,7 +16,7 @@ const Sidebar = ({ users }) => {
 	)
 }
 
-Sidebar.PropTypes = {
+SideBar.propTypes = {
 	users: PropTypes.arrayOf(
 		PropTypes.shape({
 			id: PropTypes.number.isRequired,
@@ -25,4 +25,4 @@ Sidebar.PropTypes = {
 	).isRequired
 }
 
-export default Sidebar;
+export default SideBar;

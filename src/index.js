@@ -1,14 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import React                 from 'react';
+import ReactDOM              from 'react-dom';
+import App                   from './App';
 import registerServiceWorker from './registerServiceWorker';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { Provider }          from 'react-redux';
+import { createStore }       from 'redux';
+import { addUser, addMessages }           from './actions'
 
-import chat from './reducers';
+// chatReducer is the Reducer function.
+import chatReducer from './reducers';
 
-const store = createStore(chat);
+// The function createStore (imported from 'redux') takes in, as arguements, the
+// reducer function chatReducer.
+const store = createStore(chatReducer);
+
+store.dispatch(addUser('Me'));
+store.dispatch(addUser('Jon'));
+store.dispatch(addUser('G'));
+store.dispatch(addUser('David'));
+// store.dispatch(addMessages("hello", 'David'));
+// store.dispatch(addMessages("hello again", 'David'));
 
 ReactDOM.render(
 	<Provider store={store}>
@@ -16,4 +27,7 @@ ReactDOM.render(
 	</Provider>,
 	document.getElementById('root')
 );
+
 registerServiceWorker();
+
+console.log(store.getState());

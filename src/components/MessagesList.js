@@ -1,6 +1,6 @@
-import React from 'react';
+import React     from 'react';
 import PropTypes from 'prop-types'
-import Message from './Message'
+import Message   from './Message'
 
 const MessagesList = ({ messages }) => {
 	return(
@@ -20,7 +20,7 @@ const MessagesList = ({ messages }) => {
 	)
 }
 
-MessagesList.PropTypes = {
+MessagesList.propTypes = {
 	messages: PropTypes.arrayOf(
 		PropTypes.shape({
 			id: PropTypes.number.isRequired,
