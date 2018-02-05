@@ -2,7 +2,7 @@ import { connect }         from 'react-redux'
 import AddMessageComponent from '../components/AddMessage'
 import { addMessages }     from '../actions'
 
-// No porps are necessary from the store in the Add Message component, so this
+// No props are necessary from the store in the Add Message component, so this
 // function returns an empty object
 const mapStateToProps = () => ({})
 

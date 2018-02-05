@@ -1,25 +1,31 @@
-import './index.css';
+
 import React                 from 'react';
 import ReactDOM              from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider }          from 'react-redux';
+import createSagaMiddleware  from 'redux-saga';
+
+import './index.css';
 import App                   from './App';
 import registerServiceWorker from './registerServiceWorker';
-import { Provider }          from 'react-redux';
-import { createStore }       from 'redux';
-import { addUser, addMessages }           from './actions'
+import setupSocket from './sockets'
 
 // chatReducer is the Reducer function.
 import chatReducer from './reducers';
+import handleNewMessage from './sagas';
+import username from './utils/name';
 
+const sagaMiddleware = createSagaMiddleware();
 // The function createStore (imported from 'redux') takes in, as arguements, the
 // reducer function chatReducer.
-const store = createStore(chatReducer);
+const store = createStore(
+	chatReducer,
+	applyMiddleware(sagaMiddleware)
+);
 
-store.dispatch(addUser('Me'));
-store.dispatch(addUser('Jon'));
-store.dispatch(addUser('G'));
-store.dispatch(addUser('David'));
-// store.dispatch(addMessages("hello", 'David'));
-// store.dispatch(addMessages("hello again", 'David'));
+const socket = setupSocket(store.dispatch, username);
+
+sagaMiddleware.run(handleNewMessage, { socket, username });
 
 ReactDOM.render(
 	<Provider store={store}>

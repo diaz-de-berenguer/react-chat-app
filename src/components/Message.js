@@ -22,8 +22,8 @@ const Message = ({message, author, autobot}) => {
 	}
 }
 
-Message.propTypes = {
-	dispatch: PropTypes.func.isRequired
-}
+// Message.propTypes = {
+// 	dispatch: PropTypes.func.isRequired
+// }
 
 export default Message;
